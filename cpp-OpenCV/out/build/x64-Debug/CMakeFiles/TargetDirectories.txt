@@ -1,0 +1,11 @@
+C:/Projects/Camera/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Projects/Camera/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Projects/Camera/out/build/x64-Debug/CMakeFiles/list_install_components.dir
+C:/Projects/Camera/out/build/x64-Debug/CMakeFiles/install.dir
+C:/Projects/Camera/out/build/x64-Debug/CMakeFiles/install/local.dir
+C:/Projects/Camera/out/build/x64-Debug/Camera/CMakeFiles/WebcamViewer.dir
+C:/Projects/Camera/out/build/x64-Debug/Camera/CMakeFiles/edit_cache.dir
+C:/Projects/Camera/out/build/x64-Debug/Camera/CMakeFiles/rebuild_cache.dir
+C:/Projects/Camera/out/build/x64-Debug/Camera/CMakeFiles/list_install_components.dir
+C:/Projects/Camera/out/build/x64-Debug/Camera/CMakeFiles/install.dir
+C:/Projects/Camera/out/build/x64-Debug/Camera/CMakeFiles/install/local.dir

@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Projects/Camera/out/build/x64-Debug/cmake_install.cmake",
+		"C:/Projects/Camera/out/build/x64-Debug/Camera/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
