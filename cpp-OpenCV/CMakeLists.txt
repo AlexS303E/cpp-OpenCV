@@ -35,7 +35,7 @@ add_executable(WebcamViewer
     src/WebcamViewer.cpp
     src/yolo.h
     src/yolo.cpp
-
+    src/global.cpp
 )
 
 # === Настройки цели ===
@@ -65,4 +65,39 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND NOT CMAKE_SKIP_INSTALL_RULES)
     install(TARGETS WebcamViewer
             RUNTIME DESTINATION bin
             CONFIGURATIONS Release RelWithDebInfo)
+endif()
+
+add_custom_command(
+    TARGET WebcamViewer PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin/models
+    COMMENT "Создание каталога для моделей..."
+)
+
+if(EXISTS ${CMAKE_SOURCE_DIR}/models AND IS_DIRECTORY ${CMAKE_SOURCE_DIR}/models)
+    add_custom_command(
+        TARGET WebcamViewer POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/models
+            ${CMAKE_BINARY_DIR}/models
+        COMMENT "Копирование всей папки models..."
+    )
+else()
+    message(WARNING "Папка models не найдена: ${CMAKE_SOURCE_DIR}/models")
+    
+    # Проверяем наличие отдельных файлов для обратной совместимости
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/bin/models/coco.names)
+        # Альтернатива: скачать coco.names при сборке
+        add_custom_command(
+            TARGET WebcamViewer POST_BUILD
+            COMMAND powershell -Command "
+                if (!(Test-Path '${CMAKE_BINARY_DIR}/models/coco.names')) {
+                    Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/pjreddie/darknet/master/data/coco.names' -OutFile '${CMAKE_BINARY_DIR}/models/coco.names'
+                    Write-Host 'Файл классов загружен'
+                } else {
+                    Write-Host 'Файл классов уже существует'
+                }
+            "
+            COMMENT "Скачивание файла классов COCO..."
+        )
+    endif()
 endif()
